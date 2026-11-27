@@ -1,0 +1,19 @@
+# Chaves e segredos: nunca sobem
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Ambientes virtuais
+.venv/
+venv/
+
+# Sistema
+.DS_Store
+Thumbs.db
