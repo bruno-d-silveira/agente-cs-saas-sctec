@@ -1,0 +1,27 @@
+[project]
+name = "agente-cs-saas"
+version = "0.1.0"
+description = "Agente de IA de Customer Success B2B: consulta assinaturas e inclui créditos extras na API SaaS"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "httpx>=0.27.0",
+    "langchain-core>=1.0.0",
+    "langchain-groq>=1.2.1",
+    "langgraph>=1.2.22",
+    "pydantic>=2.9.0",
+    "python-dotenv>=1.0.0",
+]
+
+[tool.uv]
+package = false
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
