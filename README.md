@@ -94,6 +94,8 @@ uv run uvicorn api.server:app --port 8001
 
 Swagger do agente em `http://localhost:8001/docs`, rota `POST /agent/executar`.
 
+Painel do analista em `http://localhost:8001/painel`: histórico das execuções, status `ok`/`bloqueada` e os dados de cada resposta, no navegador.
+
 **3. Testes automáticos** (sem chave e sem Docker; LLM e API simulados):
 
 ```bash
@@ -139,6 +141,7 @@ agent/
   graph.py     grafo LangGraph e execução
 api/
   server.py    API FastAPI
+  painel.html  painel do analista (/painel)
 tests/         testes com LLM e API simulados
 docs/evidencias/  respostas reais dos cenários
 ```
