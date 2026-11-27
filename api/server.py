@@ -1,13 +1,16 @@
 """API do agente: recebe o pedido do analista em linguagem natural e devolve JSON estruturado.
 
-Rodar:  uv run uvicorn api.server:app --reload --port 8010
-Swagger: http://localhost:8010/docs
+Rodar:  uv run uvicorn api.server:app --port 8001
+Swagger: http://localhost:8001/docs
+Painel:  http://localhost:8001/painel
 """
 
 import os
+from pathlib import Path
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
 load_dotenv()
@@ -46,9 +49,18 @@ class RespostaAgente(BaseModel):
     iteracoes: int
 
 
+PAINEL = Path(__file__).parent / "painel.html"
+
+
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+
+@app.get("/painel", include_in_schema=False)
+def painel():
+    """Painel em HTML para o analista usar o agente pelo navegador."""
+    return FileResponse(PAINEL, media_type="text/html; charset=utf-8")
 
 
 @app.post("/agent/executar", response_model=RespostaAgente)
